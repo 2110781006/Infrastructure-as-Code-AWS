@@ -2,5 +2,5 @@
 
 main()
 {
-  paCreateProj("xyz", "~/mschmit", makeDynString(), 1, "XYZ", 0);
+  paCreateProj("xyz", "/opt/mschmit", makeDynString(), 1, "zzz", 0);
 }
