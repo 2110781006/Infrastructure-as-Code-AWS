@@ -19,7 +19,7 @@ resource "aws_instance" "winccoa-master" {
   tags = {
     Name = "winccoa-master"
   }
-  vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoa.id, aws_security_group.ingress-all-http80.id, aws_security_group.ingress-all-https443.id]
+  vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoa.id, aws_security_group.ingress-all-http80.id, aws_security_group.ingress-all-https443.id, aws_security_group.ingress-dist-man.id]
   user_data = templatefile("${path.module}/winccoa-master.tpl", { winccoaSysNum="1", winccoaSysName="master" } )
 }
 
@@ -71,6 +71,25 @@ resource "aws_security_group" "ingress-all-https443" {
     ]
     from_port = 443
     to_port = 443
+    protocol = "tcp"
+  }
+  // Terraform removes the default rule
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "ingress-dist-man" {
+  name = "ingress-dist-man"
+  ingress {
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+    from_port = 4777
+    to_port = 4777
     protocol = "tcp"
   }
   // Terraform removes the default rule
