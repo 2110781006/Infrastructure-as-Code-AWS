@@ -4,11 +4,21 @@ main(...)
 {
   va_list args;
 
-  va_start(args);
-  int winccoaSysNum = va_arg(args);
-  string winccoaSysName = va_arg(args);
+  int len = va_start(args);
+  int winccoaSysNum;
+  string winccoaSysName;
 
-  paCreateProj("proj", "/opt/winccoa/", makeDynString(), winccoaSysNum, winccoaSysName, 0);
+  for ( int i = 1; i <= len; i++ )
+  {
+    if (i == len-1)
+      winccoaSysNum = va_arg(args);
+    else if (i == len)
+      winccoaSysName = va_arg(args);
+    else
+      va_arg(args);  
+  }
+
+  paCreateProj("proj", "/opt/winccoa/", makeDynString(), winccoaSysNum, winccoaSysName, 0, "");
 
   paCfgInsertValue("/opt/winccoa/proj/config/config", "general", "distributed", 1);
   paCfgInsertValue("/opt/winccoa/proj/config/config", "general", "mxProxy", "none");
