@@ -33,8 +33,17 @@ anytype work(dyn_string names, dyn_string values, string user, string ip,
   dpGet("_DistConnections.Dist.ManNums", manNums,
         "_DistConnections.Dist.StartTimes", times,
         "_DistConnections.Dist.HostNames", hostNames);
+
+  html+="<table><tr><th>Systemnummer</th><th>Startzeit</th><th>Host</th><th>Systemname</th></tr>";
+
+  for ( int i = 1; i <= dynlen(manNums); i++ )
+  {
+    html+="<table><tr><td>"+manNums[i]+"</td><td>"+((string)times[i])+"</td><td>"+hostNames[i]+"</td><td>"+getSystemName(manNums[i])+"</td></tr>";
+  }
+
+  html+="<table>";
   
-  html +=hostNames+"</body></html>";
-  DebugN(hostNames);
+  html +="</body></html>";
+
   return html;
 }
