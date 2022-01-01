@@ -13,6 +13,12 @@ anytype work(dyn_string names, dyn_string values, string user, string ip,
   string html = "<html>";
   
   html+="<head><title>Willkommen auf dem Master System</title>";
+  html+="<style>";
+  html+="table, th, td {";
+  html+="  border: 1px solid black;";
+  html+="  border-collapse: collapse;";
+  html+="}";
+  html+="</style>";
   html+="<script>";
   html+="function autoRefresh() {";
   html+=    "window.location = window.location.href;";
