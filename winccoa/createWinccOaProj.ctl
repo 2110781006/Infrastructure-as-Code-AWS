@@ -2,5 +2,5 @@
 
 main()
 {
-  paCreateProj("zzz", "/opt/winccoa/", makeDynString(), 1, "sys", 0);
+  paCreateProj("proj", "/opt/winccoa/", makeDynString(), getenv("winccoaSysNum"), getenv("winccoaSysName"), 0);
 }
