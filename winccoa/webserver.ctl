@@ -34,6 +34,8 @@ anytype work(dyn_string names, dyn_string values, string user, string ip,
         "_DistConnections.Dist.StartTimes", times,
         "_DistConnections.Dist.HostNames", hostNames);
 
+  html+= "<br><b>Verbundene Systeme:</b>";
+
   html+="<table><tr><th>Systemnummer</th><th>Startzeit</th><th>Host</th><th>Systemname</th></tr>";
 
   for ( int i = 1; i <= dynlen(manNums); i++ )
