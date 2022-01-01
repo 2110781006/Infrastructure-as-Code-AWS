@@ -13,6 +13,7 @@ sudo git clone https://github.com/2110781006/Infrastructure-as-Code-AWS.git
 sudo git pull
 #create wincc oa project
 sudo /opt/WinCC_OA/3.15/bin/WCCOActrl -proj 3.15 -n -log +stderr /opt/winccoa/Infrastructure-as-Code-AWS/winccoa/createWinccOaProj.ctl ${winccoaSysNum} ${winccoaSysName}
+sudo /opt/WinCC_OA/3.15/bin/WCCOAtoolSyncTypes -proj proj -system ${winccoaSysNum} ${winccoaSysName} -log +stderr
 #switch progs
 sudo cp /opt/winccoa/Infrastructure-as-Code-AWS/winccoa/progs_master /opt/winccoa/proj/config/progs
 #copy webserver script

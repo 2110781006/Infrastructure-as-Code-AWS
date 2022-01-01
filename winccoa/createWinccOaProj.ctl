@@ -25,7 +25,6 @@ main(...)
 
   if ( winccoaSysName == "master" )//add dist section
   {
-    paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "NOQUOTE:\""+winccoaSysName+"\" "+winccoaSysNum );
     paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "NOQUOTE:\"myValue\" 2" );
     paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "NOQUOTE:\"myValue\" 3" );
   }
