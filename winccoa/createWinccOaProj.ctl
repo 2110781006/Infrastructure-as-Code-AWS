@@ -7,13 +7,17 @@ main(...)
   int len = va_start(args);
   int winccoaSysNum;
   string winccoaSysName;
+  string sub1Ip;
+  string sub2Ip;
 
   for ( int i = 1; i <= len; i++ )
   {
-    if (i == len-1)
+    if (i == len-2)
       winccoaSysNum = va_arg(args);
-    else if (i == len)
+    else if (i == len-1)
       winccoaSysName = va_arg(args);
+    else if (i == len)
+      sub1Ip = va_arg(args);
     else
       va_arg(args);  
   }
@@ -25,7 +29,7 @@ main(...)
 
   if ( winccoaSysName == "master" )//add dist section
   {
-    paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "NOQUOTE:\"myValue\" 2" );
+    paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "NOQUOTE:\""+sub1Ip+"\" 2" );
     paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "NOQUOTE:\"myValue\" 3" );
   }
 }
