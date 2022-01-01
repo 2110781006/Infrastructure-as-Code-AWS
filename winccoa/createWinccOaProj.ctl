@@ -9,6 +9,7 @@ main()
 
   if ( getenv("winccoaSysName") == "master" )//add dist section
   {
-    paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "test");
+    paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "NOQUOTE:\"myValue\" 2" );
+    paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "NOQUOTE:\"myValue\" 3" );
   }
 }

@@ -34,7 +34,7 @@ anytype work(dyn_string names, dyn_string values, string user, string ip,
         "_DistConnections.Dist.StartTimes", times,
         "_DistConnections.Dist.HostNames", hostNames);
   
-  html +="</body></html>";
+  html +=hostNames+"</body></html>";
   DebugN(hostNames);
   return html;
 }
