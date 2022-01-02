@@ -46,7 +46,7 @@ anytype work(dyn_string names, dyn_string values, string user, string ip,
 
   for ( int i = 1; i <= dynlen(manNums); i++ )
   {
-    html+="<table><tr><td>"+manNums[i]+"</td><td>"+((string)times[i])+"</td><td>"+hostNames[i]+"</td><td>"+getSystemName(manNums[i])+"</td></tr>";
+    html+="<tr><td>"+manNums[i]+"</td><td>"+((string)times[i])+"</td><td>"+hostNames[i]+"</td><td>"+getSystemName(manNums[i])+"</td></tr>";
   }
 
   html+="<table>";
