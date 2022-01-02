@@ -49,7 +49,7 @@ anytype work(dyn_string names, dyn_string values, string user, string ip,
     html+="<tr><td>"+manNums[i]+"</td><td>"+((string)times[i])+"</td><td>"+hostNames[i]+"</td><td>"+getSystemName(manNums[i])+"</td></tr>";
   }
 
-  html+="<table>";
+  html+="</table>";
   
   html +="</body></html>";
 
