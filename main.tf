@@ -32,7 +32,7 @@ resource "aws_instance" "winccoa-sub2" {
     Name = "winccoa-sub2"
   }
   vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoa.id, aws_security_group.ingress-all-http80.id, aws_security_group.ingress-all-https443.id, aws_security_group.ingress-dist-man.id]
-  user_data = templatefile("${path.module}/winccoa-sub.tpl", { winccoaSysNum="2", winccoaSysName="sub1", winccoaSub1Ip="notused", winccoaSub2Ip="notused" } )
+  user_data = templatefile("${path.module}/winccoa-sub.tpl", { winccoaSysNum="3", winccoaSysName="sub2", winccoaSub1Ip="notused", winccoaSub2Ip="notused" } )
 }
 
 # Resource for master
