@@ -20,7 +20,19 @@ resource "aws_instance" "winccoa-sub1" {
     Name = "winccoa-sub1"
   }
   vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoa.id, aws_security_group.ingress-all-http80.id, aws_security_group.ingress-all-https443.id, aws_security_group.ingress-dist-man.id]
-  user_data = templatefile("${path.module}/winccoa-sub.tpl", { winccoaSysNum="2", winccoaSysName="sub1", winccoaSub1Ip="notused" } )
+  user_data = templatefile("${path.module}/winccoa-sub.tpl", { winccoaSysNum="2", winccoaSysName="sub1", winccoaSub1Ip="notused", winccoaSub2Ip="notused" } )
+}
+
+# Resource for sub2
+resource "aws_instance" "winccoa-sub2" {
+  ami = data.aws_ami.amazon-2.id
+  instance_type = "t3.micro"
+
+  tags = {
+    Name = "winccoa-sub2"
+  }
+  vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoa.id, aws_security_group.ingress-all-http80.id, aws_security_group.ingress-all-https443.id, aws_security_group.ingress-dist-man.id]
+  user_data = templatefile("${path.module}/winccoa-sub.tpl", { winccoaSysNum="2", winccoaSysName="sub1", winccoaSub1Ip="notused", winccoaSub2Ip="notused" } )
 }
 
 # Resource for master
@@ -32,7 +44,7 @@ resource "aws_instance" "winccoa-master" {
     Name = "winccoa-master"
   }
   vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoa.id, aws_security_group.ingress-all-http80.id, aws_security_group.ingress-all-https443.id, aws_security_group.ingress-dist-man.id]
-  user_data = templatefile("${path.module}/winccoa-master.tpl", { winccoaSysNum="1", winccoaSysName="master", winccoaSub1Ip=aws_instance.winccoa-sub1.public_ip } )
+  user_data = templatefile("${path.module}/winccoa-master.tpl", { winccoaSysNum="1", winccoaSysName="master", winccoaSub1Ip=aws_instance.winccoa-sub1.public_ip, winccoaSub2Ip=aws_instance.winccoa-sub2.public_ip } )
 }
 
 /************************SECURITY*****************************************/
