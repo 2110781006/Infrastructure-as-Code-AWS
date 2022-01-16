@@ -13,9 +13,9 @@ sudo git clone https://github.com/2110781006/Infrastructure-as-Code-AWS.git
 sudp git checkout fernlehre2
 sudo git pull
 #create wincc oa project
-sudo /opt/WinCC_OA/3.15/bin/WCCOActrl -proj 3.15 -n -log +stderr /opt/winccoa/Infrastructure-as-Code-AWS/winccoa/createWinccOaProj.ctl  ${winccoaSysNum} ${winccoaSysName} ${winccoaSub1Ip} ${winccoaSub2Ip}
+sudo /opt/WinCC_OA/3.15/bin/WCCOActrl -proj 3.15 -n -log +stderr /opt/winccoa/Infrastructure-as-Code-AWS/modules/winccoaSystem/winccoa/createWinccOaProj.ctl  ${winccoaSysNum} ${winccoaSysName} ${winccoaSub1Ip} ${winccoaSub2Ip}
 sudo /opt/WinCC_OA/3.15/bin/WCCOAtoolSyncTypes -proj proj -system ${winccoaSysNum} ${winccoaSysName} -log +stderr
 #switch progs
-sudo cp /opt/winccoa/Infrastructure-as-Code-AWS/winccoa/progs_sub /opt/winccoa/proj/config/progs
+sudo cp /opt/winccoa/Infrastructure-as-Code-AWS/modules/winccoaSystem/winccoa/progs_sub /opt/winccoa/proj/config/progs
 #start wincc oa project
 sudo /opt/WinCC_OA/3.15/bin/WCCILpmon -proj proj -log +stderr
