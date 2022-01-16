@@ -29,7 +29,7 @@ main(...)
   paCfgInsertValue("/opt/winccoa/proj/config/config", "general", "distributed", 1);
   paCfgInsertValue("/opt/winccoa/proj/config/config", "general", "mxProxy", "none");
 
-  if ( winccoaSysName == "master" )//add dist section
+  if ( if(strpos(winccoaSysName, "master") != -1 )//add dist section
   {
     paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "NOQUOTE:\""+sub1Ip+"\" 2" );
     paCfgInsertValue("/opt/winccoa/proj/config/config", "dist", "distPeer", "NOQUOTE:\""+sub2Ip+"\" 3" );
