@@ -10,6 +10,7 @@ sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=dow
 sudo yum -y install /opt/winccoa/WinCC_OA_3.15-base-rhel-0-37.x86_64.rpm
 #clone git repo
 sudo git clone https://github.com/2110781006/Infrastructure-as-Code-AWS.git
+cd Infrastructure-as-Code-AWS
 sudo git checkout fernlehre2
 sudo git pull
 #create wincc oa project
