@@ -12,7 +12,7 @@ data "aws_ami" "amazon-2" {
 /************************instances*****************************************/
 
 # Resource for sub1
-resource "aws_instance" "winccoa-sub1" {
+/*resource "aws_instance" "winccoa-sub1" {
   ami = data.aws_ami.amazon-2.id
   instance_type = "t3.micro"
 
@@ -21,8 +21,8 @@ resource "aws_instance" "winccoa-sub1" {
   }
   vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoa.id, aws_security_group.ingress-all-http80.id, aws_security_group.ingress-all-https443.id, aws_security_group.ingress-dist-man.id]
   user_data = templatefile("${path.module}/winccoa-sub.tpl", { winccoaSysNum="2", winccoaSysName="sub1", winccoaSub1Ip="notused", winccoaSub2Ip="notused" } )
-}
-
+}*/
+/*
 # Resource for sub2
 resource "aws_instance" "winccoa-sub2" {
   ami = data.aws_ami.amazon-2.id
@@ -34,7 +34,7 @@ resource "aws_instance" "winccoa-sub2" {
   vpc_security_group_ids = [aws_security_group.ingress-all-ssh-winccoa.id, aws_security_group.ingress-all-http80.id, aws_security_group.ingress-all-https443.id, aws_security_group.ingress-dist-man.id]
   user_data = templatefile("${path.module}/winccoa-sub.tpl", { winccoaSysNum="3", winccoaSysName="sub2", winccoaSub1Ip="notused", winccoaSub2Ip="notused" } )
 }
-
+*/
 # Resource for master
 /*resource "aws_instance" "winccoa-master" {
   ami = data.aws_ami.amazon-2.id
@@ -132,6 +132,29 @@ resource "aws_security_group" "elb_http" {
   ingress {
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "Allow HTTP through ELB Security Group"
+  }
+}
+
+resource "aws_security_group" "elb_dist" {
+  name        = "${var.winccoaSystemName}-elb_dist"
+  description = "Allow HTTP traffic to instances through Elastic Load Balancer"
+
+  ingress {
+    from_port   = 4777
+    to_port     = 4777
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
